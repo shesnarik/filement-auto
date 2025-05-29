@@ -10,31 +10,21 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Администратор
-        $admin = User::firstOrCreate([
-            'email' => 'admin@autoservice.com'
-        ], [
-            'name' => 'Администратор',
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);
-        $admin->assignRole('admin');
 
-        // Механик
-        $mechanic = User::firstOrCreate([
-            'email' => 'mechanic@autoservice.com'
-        ], [
-            'name' => 'Иван Механиков',
-            'password' => Hash::make('password'),
-        ]);
-        $mechanic->assignRole('mechanic');
+        $admin->assignRole('admin'); // Теперь будет работать
 
-        // Клиент
-        $client = User::firstOrCreate([
-            'email' => 'client@example.com'
-        ], [
-            'name' => 'Петр Клиентов',
+        // Создание обычного пользователя
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@example.com',
             'password' => Hash::make('password'),
         ]);
-        $client->assignRole('client');
+
+        $user->assignRole('user');
     }
 }
